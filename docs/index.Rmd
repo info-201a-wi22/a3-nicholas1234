@@ -1,0 +1,69 @@
+---
+title: "U.S. Incarceration"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source('../source/analysis.R')
+```
+## Introduction
+In this report, I will be discussing the issue of disproportionate incarceration
+in the United States. I will be using a data set from Vera Institute that
+contains data about jail and prison populations of each county in the U.S.,
+broken down by groups, such as race and sex. The data set uses 5 racial groups:
+Black, White, Asian American/Pacific Islander, Native, and Latinx. For this 
+report, I will be focusing on the statistics regarding Black Americans. 
+`r percent_black_pop`% of Americans are Black, yet `r percent_black_prison_pop`%
+of the prison population is Black, an extremely disproportionate amount. This
+disproportionality is not seen in other racial groups. For example,
+`r percent_latinx_pop`% of Americans are Latinx, and 
+`r percent_latinx_prison_pop`% of the prison population is Latinx, which is much
+more proportionate. This issue is seen even greater on smaller scales, in fact,
+`r county_max_black_prison_percent` has `r max_county_black_prison_percent`%
+of its Black population imprisoned.
+
+## Incarceration Over Time
+```{r time_plot, echo = FALSE, fig.show = 'hold'}
+plot(time_plot)
+```
+<br />
+I chose to graph total prison population by race over time to see how the issue
+of disproportionate incarceration has changed over time. This graph shows that 
+Black Americans have historically always had the largest incarcerated population
+despite making up a fraction of the total U.S.population. Latinx Americans also 
+a large portion of the prison population, while Asian American/Pacific Islanders
+and Indigenous Americans contribute a very small amount. White Americans have 
+historically been the second largest racial group in prison; however, it is 
+important to keep in mind they make up the majority of the total population. 
+It also shows an interesting pattern: White, Black, and Latinx prison population
+often increase and decrease at similar times. This could be due to general 
+legislation changes that effect these groups similarly.
+
+## Black Population vs. Black Imprisonment
+```{r comp_plot, echo = FALSE, message = FALSE, warning = FALSE, fig.show = 'hold'}
+plot(comp_plot)
+```
+<br />
+I chose to create a scatter plot of the percent of the population that is Black
+versus the percent of the prison population that is black per county in order to
+see if this issue is more prevalent in areas where Black Americans are more of a
+minority group. I chose to use a log scale for both axes to help visualize the
+large range of rates, and I added a line of best fit to help make out a trend.
+The graph shows that the rate of incarceration is inversely proportionate to the 
+population rate, meaning Black Americans are imprisoned more in counties in
+which they are more in the minority.
+
+## Map
+```{r map, echo = FALSE, fig.show = 'hold'}
+plot(map)
+```
+<br />
+I chose to shade each state based off of the percent of the Black population
+that is in prison, as I wanted to see if geography is a factor in this issue,
+and only looking at the total number of imprisoned Black Americans would not 
+take into account the population of the state. The map shows that Black 
+incarceration vary a lot between states, but it is difficult to see if there are
+more general geographic trends. It seems as if the rate is generally higher
+in the East compared to the West, but there are many states in both areas with
+a rate near 0.
